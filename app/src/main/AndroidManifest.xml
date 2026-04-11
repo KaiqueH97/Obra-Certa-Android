@@ -12,7 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ObraCertaAndroid">
         <activity
-            android:name=".MainActivity"
+            android:name=".ProjetoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TarefasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalculadoraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
