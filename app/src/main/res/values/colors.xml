@@ -1,5 +1,15 @@
 <resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="laranja_principal">#F05118</color>
-    <color name="azul_escuro">#212F3D</color>
-    <color name="fundo_cinza">#F8F9FA</color>
+    <color name="azul_botoes">#212F3D</color>
+    <color name="vermelho_titulo">#EF5350</color>
+    <color name="azul_claro_fundo_input">#E8F0FE</color>
+    <color name="preto_texto">#000000</color>
+    <color name="azul_marinho_texto">#0A1E3F</color>
+    <color name="cinza_subtitulo">#607D8B</color>
+    <color name="cinza_fundo_input">#F8F9FA</color>
+    <color name="cinza_claro_botoes">#D1D6DE</color>
+    <color name="vermelho_sair">#E3000F</color>
+    <color name="cinza_texto_secundario">#8A96A3</color>
 </resources>
