@@ -16,5 +16,9 @@ class CalculadoraActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val txtVoltar = findViewById<android.widget.TextView>(R.id.tvVoltarCalculadora)
+        txtVoltar.setOnClickListener {
+            finish()
+        }
     }
 }

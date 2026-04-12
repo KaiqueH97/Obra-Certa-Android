@@ -16,5 +16,9 @@ class PerfilActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val txtVoltar = findViewById<android.widget.TextView>(R.id.tvVoltarPerfil)
+        txtVoltar.setOnClickListener {
+            finish()
+        }
     }
 }

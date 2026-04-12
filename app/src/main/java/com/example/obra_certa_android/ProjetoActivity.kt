@@ -16,5 +16,9 @@ class ProjetoActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val txtVoltar = findViewById<android.widget.TextView>(R.id.tvVoltarProjetos)
+        txtVoltar.setOnClickListener {
+            finish()
+        }
     }
 }
