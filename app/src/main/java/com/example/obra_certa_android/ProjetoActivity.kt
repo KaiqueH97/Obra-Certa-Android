@@ -1,6 +1,8 @@
 package com.example.obra_certa_android
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -19,6 +21,19 @@ class ProjetoActivity : AppCompatActivity() {
         val txtVoltar = findViewById<android.widget.TextView>(R.id.tvVoltarProjetos)
         txtVoltar.setOnClickListener {
             finish()
+        }
+
+        val cardGabriel = findViewById<LinearLayout>(R.id.cardProjetoGabriel)
+        val cardKaique = findViewById<LinearLayout>(R.id.cardProjetoKaique)
+
+        cardGabriel.setOnClickListener {
+            val intent = Intent(this, TarefasActivity::class.java)
+            startActivity(intent)
+        }
+
+        cardKaique.setOnClickListener {
+            val intent = Intent(this, TarefasActivity::class.java)
+            startActivity(intent)
         }
     }
 }
