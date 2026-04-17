@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main" android:layout_width="match_parent"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="30dp"
     android:orientation="vertical">
@@ -46,12 +47,16 @@
             android:text="@string/label_superficie"
             android:textColor="@color/azul_marinho_texto"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:labelFor="@+id/spSuperficie"/>
 
-        <Spinner
+        <EditText
             android:id="@+id/spSuperficie"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:text="@string/piso"
+            android:inputType="text"
+            android:importantForAutofill="no"
             android:background="@color/cinza_fundo_input"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp" />
@@ -62,7 +67,8 @@
             android:text="@string/label_material"
             android:textColor="@color/azul_marinho_texto"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:labelFor="@+id/etMaterial"/>
 
         <EditText
             android:id="@+id/etMaterial"
@@ -70,6 +76,7 @@
             android:layout_height="50dp"
             android:text="@string/texto_ceramica"
             android:inputType="text"
+            android:importantForAutofill="no"
             android:background="@color/cinza_fundo_input"
             android:padding="12dp"
             android:layout_marginTop="8dp"
@@ -79,6 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:baselineAligned="false"
             android:layout_marginBottom="30dp">
 
             <LinearLayout
@@ -94,7 +102,8 @@
                     android:text="@string/label_altura"
                     android:textColor="@color/azul_marinho_texto"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:labelFor="@+id/etAltura"/>
 
                 <EditText
                     android:id="@+id/etAltura"
@@ -102,6 +111,7 @@
                     android:layout_height="50dp"
                     android:hint="@string/dica_altura"
                     android:inputType="numberDecimal"
+                    android:importantForAutofill="no"
                     android:background="@color/cinza_fundo_input"
                     android:padding="12dp"
                     android:layout_marginTop="8dp"/>
@@ -120,7 +130,8 @@
                     android:text="@string/label_largura"
                     android:textColor="@color/azul_marinho_texto"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:labelFor="@+id/etLargura"/>
 
                 <EditText
                     android:id="@+id/etLargura"
@@ -128,6 +139,7 @@
                     android:layout_height="50dp"
                     android:hint="@string/dica_largura"
                     android:inputType="numberDecimal"
+                    android:importantForAutofill="no"
                     android:background="@color/cinza_fundo_input"
                     android:padding="12dp"
                     android:layout_marginTop="8dp"/>
@@ -144,6 +156,7 @@
             android:textStyle="bold"
             android:backgroundTint="@color/laranja_principal" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/llResultado"
         android:layout_width="match_parent"
@@ -157,7 +170,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Resultado da Cotação"
+            android:text="@string/resultado_cotacao"
             android:textColor="@color/azul_marinho_texto"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -168,7 +181,7 @@
             android:id="@+id/tvAreaExata"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Área Exata: 0 m²"
+            android:text="@string/area_exata_zero"
             android:textColor="@color/cinza_subtitulo"
             android:textSize="16sp"
             android:gravity="center" />
@@ -177,7 +190,7 @@
             android:id="@+id/tvAreaComMargem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Com margem (10%): 0 m²"
+            android:text="@string/com_margem_zero"
             android:textColor="@color/laranja_principal"
             android:textSize="20sp"
             android:textStyle="bold"

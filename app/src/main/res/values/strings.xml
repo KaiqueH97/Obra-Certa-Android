@@ -42,4 +42,8 @@
     <string name="titulo_perfil">Meu Perfil</string>
     <string name="label_usuario_conectado">USUÁRIO CONECTADO</string>
     <string name="btn_sair_sistema">Sair do Sistema</string>
+    <string name="piso">Piso</string>
+    <string name="resultado_cotacao">Resultado da Cotação</string>
+    <string name="area_exata_zero">Área Exata: 0 m²</string>
+    <string name="com_margem_zero">Com margem (10%): 0 m²</string>
 </resources>
