@@ -46,4 +46,15 @@
     <string name="resultado_cotacao">Resultado da Cotação</string>
     <string name="area_exata_zero">Área Exata: 0 m²</string>
     <string name="com_margem_zero">Com margem (10%): 0 m²</string>
+
+    <string name="titulo_app">Obra Certa</string>
+    <string name="label_email">E-mail</string>
+    <string name="dica_email">Digite seu e-mail</string>
+    <string name="label_senha">Senha</string>
+    <string name="dica_senha">Sua senha secreta</string>
+    <string name="btn_entrar">Entrar</string>
+
+    <string name="esqueceu_senha">Esqueceu sua senha?</string>
+    <string name="nao_tem_conta">Não tem uma conta? </string>
+    <string name="cadastre_se">Cadastre-se aqui</string>
 </resources>
