@@ -1,28 +1,38 @@
 <resources>
+    <!-- Configurações Gerais -->
     <string name="app_name">Obra Certa</string>
     <string name="titulo_app">Obra Certa</string>
+
+    <!-- Textos Compartilhados (Login e Cadastro) -->
     <string name="label_email">E-mail</string>
-    <string name="dica_email">user@obracerta.com</string>
+    <string name="dica_email">Digite seu e-mail</string>
     <string name="label_senha">Senha</string>
-    <string name="dica_senha">•••••••</string>
+    <string name="dica_senha">Sua senha secreta</string>
     <string name="btn_entrar">Entrar</string>
     <string name="btn_criar_conta">Criar Nova Conta</string>
+    <string name="esqueceu_senha">Esqueceu sua senha?</string>
+    <string name="nao_tem_conta">Não tem uma conta? </string>
+    <string name="cadastre_se">Cadastre-se aqui</string>
 
+    <!-- Botões Genéricos -->
     <string name="btn_voltar">Voltar</string>
     <string name="txt_abrir">Abrir</string>
 
+    <!-- Resumo da Obra -->
     <string name="titulo_resumo">Resumo da Obra</string>
     <string name="subtitulo_resumo">O que vamos fazer hoje?</string>
     <string name="btn_meus_projetos">Meus Projetos</string>
     <string name="btn_calculadora">Calculadora de Materiais</string>
     <string name="btn_meu_perfil">Meu Perfil</string>
 
+    <!-- Meus Projetos -->
     <string name="titulo_projetos">Meus Projetos</string>
     <string name="dica_novo_projeto">Ex: Reforma da Cozinha</string>
     <string name="btn_criar">Criar</string>
     <string name="exemplo_cliente_1">Cliente Gabriel</string>
     <string name="exemplo_cliente_2">Cliente Kaique</string>
 
+    <!-- Calculadora de Materiais -->
     <string name="titulo_calculadora">Calculadora</string>
     <string name="label_superficie">Superfície</string>
     <string name="label_material">Material</string>
@@ -32,29 +42,30 @@
     <string name="label_largura">Largura (m)</string>
     <string name="dica_largura">Ex: 7.5</string>
     <string name="btn_calcular">Calcular Agora</string>
+    <string name="piso">Piso</string>
+    <string name="resultado_cotacao">Resultado da Cotação</string>
+    <string name="area_exata_zero">Área Exata: 0 m²</string>
+    <string name="com_margem_zero">Com margem (10%): 0 m²</string>
 
+    <!-- Tarefas da Obra -->
     <string name="titulo_tarefas">Tarefas da Obra</string>
     <string name="dica_nova_tarefa">Ex: Assentar piso da sala</string>
     <string name="btn_add">Add</string>
     <string name="tarefa_exemplo_1">Pintar a parede da sala</string>
     <string name="tarefa_exemplo_2">Pintar a parede do quarto</string>
 
+    <!-- Meu Perfil -->
     <string name="titulo_perfil">Meu Perfil</string>
     <string name="label_usuario_conectado">USUÁRIO CONECTADO</string>
     <string name="btn_sair_sistema">Sair do Sistema</string>
-    <string name="piso">Piso</string>
-    <string name="resultado_cotacao">Resultado da Cotação</string>
-    <string name="area_exata_zero">Área Exata: 0 m²</string>
-    <string name="com_margem_zero">Com margem (10%): 0 m²</string>
 
-    <string name="titulo_app">Obra Certa</string>
-    <string name="label_email">E-mail</string>
-    <string name="dica_email">Digite seu e-mail</string>
-    <string name="label_senha">Senha</string>
-    <string name="dica_senha">Sua senha secreta</string>
-    <string name="btn_entrar">Entrar</string>
-
-    <string name="esqueceu_senha">Esqueceu sua senha?</string>
-    <string name="nao_tem_conta">Não tem uma conta? </string>
-    <string name="cadastre_se">Cadastre-se aqui</string>
+    <!-- Tela de Cadastro -->
+    <string name="titulo_cadastro">Criar Conta</string>
+    <string name="label_nome">Nome Completo</string>
+    <string name="dica_nome">Digite seu nome</string>
+    <string name="label_confirmar_senha">Confirmar Senha</string>
+    <string name="dica_confirmar_senha">Repita sua senha</string>
+    <string name="btn_cadastrar">Cadastrar</string>
+    <string name="ja_tem_conta">Já tem uma conta? </string>
+    <string name="entrar_aqui">Entre aqui</string>
 </resources>
