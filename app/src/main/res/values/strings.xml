@@ -68,4 +68,11 @@
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="ja_tem_conta">Já tem uma conta? </string>
     <string name="entrar_aqui">Entre aqui</string>
+
+    <!-- Tela de Recuperar senha -->
+    <string name="titulo_recuperar">Recuperar Acesso</string>
+    <string name="instrucao_recuperar">Digite seu e-mail para receber o link de recuperação.</string>
+    <string name="dica_email_recuperar">Seu e-mail</string>
+    <string name="btn_enviar_link">Enviar Link</string>
+    <string name="voltar_login">Voltar para o Login</string>
 </resources>

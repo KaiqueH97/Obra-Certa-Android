@@ -30,5 +30,10 @@ class LoginActivity : AppCompatActivity() {
             val intentCadastro = Intent(this, CadastroActivity::class.java)
             startActivity(intentCadastro)
         }
+        val tvEsqueceuSenha = findViewById<TextView>(R.id.tvEsqueceuSenha)
+        tvEsqueceuSenha.setOnClickListener {
+            val intentRecuperar = Intent(this, RecuperarActivity::class.java)
+            startActivity(intentRecuperar)
+        }
     }
 }
