@@ -31,6 +31,9 @@
     <string name="btn_criar">Criar</string>
     <string name="exemplo_cliente_1">Cliente Gabriel</string>
     <string name="exemplo_cliente_2">Cliente Kaique</string>
+    <string name="abrir_obra">Abrir Obra</string>
+    <string name="editar">Editar</string>
+    <string name="excluir">Excluir</string>
 
     <!-- Calculadora de Materiais -->
     <string name="titulo_calculadora">Calculadora</string>

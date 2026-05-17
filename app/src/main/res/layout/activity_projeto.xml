@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
+    android:background="#F8F9FA"
+    android:padding="25dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="30dp">
 
         <TextView
@@ -17,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/titulo_projetos"
-            android:textColor="@color/azul_marinho_texto"
+            android:textColor="#1A202C"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -27,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_voltar"
             android:textColor="@color/laranja_principal"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
@@ -36,7 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="40dp">
+        android:baselineAligned="false"
+        android:layout_marginBottom="30dp">
 
         <EditText
             android:id="@+id/etNovoProjeto"
@@ -45,76 +50,172 @@
             android:layout_weight="1"
             android:hint="@string/dica_novo_projeto"
             android:inputType="text"
-            android:background="@color/cinza_fundo_input"
-            android:padding="12dp"
+            android:importantForAutofill="no"
+            android:background="@drawable/bg_input_borda"
+            android:padding="15dp"
             android:layout_marginEnd="10dp"/>
 
         <Button
             android:id="@+id/btnCriarProjeto"
-            android:layout_width="90dp"
+            android:layout_width="95dp"
             android:layout_height="55dp"
             android:text="@string/btn_criar"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:backgroundTint="@color/azul_botoes" />
+            android:backgroundTint="#1A202C"
+            app:cornerRadius="8dp"/>
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardProjetoGabriel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:padding="25dp"
-        android:elevation="3dp"
-        android:layout_marginBottom="15dp">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_marginBottom="20dp">
 
-        <TextView
-            android:id="@+id/tvNomeCliente1"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/exemplo_cliente_1"
-            android:textColor="@color/azul_marinho_texto"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_abrir"
-            android:textColor="@color/laranja_principal"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-    <LinearLayout
+                <TextView
+                    android:id="@+id/tvNomeCliente1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/exemplo_cliente_1"
+                    android:textColor="#1A202C"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abrir_obra"
+                    android:textColor="@color/laranja_principal"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_abrir_obra"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E2E8F0"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/editar"
+                    android:textColor="#3182CE"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excluir"
+                    android:textColor="#E53E3E"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardProjetoKaique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:padding="25dp"
-        android:elevation="3dp">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/white">
 
-        <TextView
-            android:id="@+id/tvNomeCliente2"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/exemplo_cliente_2"
-            android:textColor="@color/azul_marinho_texto"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_abrir"
-            android:textColor="@color/laranja_principal"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvNomeCliente2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/exemplo_cliente_2"
+                    android:textColor="#1A202C"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abrir_obra"
+                    android:textColor="@color/laranja_principal"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_abrir_obra"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="8dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E2E8F0"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/editar"
+                    android:textColor="#3182CE"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excluir"
+                    android:textColor="#E53E3E"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
