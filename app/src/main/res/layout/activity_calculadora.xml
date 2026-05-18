@@ -1,200 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
-    android:orientation="vertical">
+    android:background="#F8F9FA"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="30dp">
-
-        <TextView
-            android:id="@+id/tvTituloCalculadora"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/titulo_calculadora"
-            android:textColor="@color/azul_marinho_texto"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvVoltarCalculadora"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_voltar"
-            android:textColor="@color/laranja_principal"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical" />
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/white"
-        android:padding="25dp"
-        android:elevation="4dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_superficie"
-            android:textColor="@color/azul_marinho_texto"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:labelFor="@+id/spSuperficie"/>
-
-        <EditText
-            android:id="@+id/spSuperficie"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/piso"
-            android:inputType="text"
-            android:importantForAutofill="no"
-            android:background="@color/cinza_fundo_input"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="20dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_material"
-            android:textColor="@color/azul_marinho_texto"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:labelFor="@+id/etMaterial"/>
-
-        <EditText
-            android:id="@+id/etMaterial"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/texto_ceramica"
-            android:inputType="text"
-            android:importantForAutofill="no"
-            android:background="@color/cinza_fundo_input"
-            android:padding="12dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="20dp" />
+        android:padding="25dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:baselineAligned="false"
             android:layout_marginBottom="30dp">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvTituloCalculadora"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginEnd="10dp">
+                android:text="@string/titulo_calculadora"
+                android:textColor="#1A202C"
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_altura"
-                    android:textColor="@color/azul_marinho_texto"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:labelFor="@+id/etAltura"/>
-
-                <EditText
-                    android:id="@+id/etAltura"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="@string/dica_altura"
-                    android:inputType="numberDecimal"
-                    android:importantForAutofill="no"
-                    android:background="@color/cinza_fundo_input"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tvVoltarCalculadora"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_largura"
-                    android:textColor="@color/azul_marinho_texto"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:labelFor="@+id/etLargura"/>
-
-                <EditText
-                    android:id="@+id/etLargura"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="@string/dica_largura"
-                    android:inputType="numberDecimal"
-                    android:importantForAutofill="no"
-                    android:background="@color/cinza_fundo_input"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
+                android:text="@string/btn_voltar"
+                android:textColor="@color/laranja_principal"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnCalcular"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="@string/btn_calcular"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:backgroundTint="@color/laranja_principal" />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Superfície"
+                    android:textColor="#1A202C"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spSuperficie"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/bg_input_borda"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tipo de material"
+                    android:textColor="#1A202C"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spMaterial"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/bg_input_borda"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="25dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false"
+                    android:layout_marginBottom="30dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Altura (m)"
+                            android:textColor="#1A202C"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/etAltura"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:hint="Ex: 5"
+                            android:inputType="numberDecimal"
+                            android:importantForAutofill="no"
+                            android:background="@drawable/bg_input_borda"
+                            android:padding="12dp"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Largura (m)"
+                            android:textColor="#1A202C"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/etLargura"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:hint="Ex: 7.5"
+                            android:inputType="numberDecimal"
+                            android:importantForAutofill="no"
+                            android:background="@drawable/bg_input_borda"
+                            android:padding="12dp"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnCalcular"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Calcular Agora"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#1A202C"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/llResultado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_input_borda"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/tvNomeMaterialResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Material: "
+                android:textColor="#1A202C"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/tvAreaComMargem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0 m²"
+                android:textColor="@color/laranja_principal"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llResultado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/cinza_fundo_input"
-        android:layout_marginTop="20dp"
-        android:padding="20dp"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/resultado_cotacao"
-            android:textColor="@color/azul_marinho_texto"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:id="@+id/tvAreaExata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/area_exata_zero"
-            android:textColor="@color/cinza_subtitulo"
-            android:textSize="16sp"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/tvAreaComMargem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/com_margem_zero"
-            android:textColor="@color/laranja_principal"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="5dp" />
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>
