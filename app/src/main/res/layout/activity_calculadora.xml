@@ -166,27 +166,86 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/bg_input_borda"
+            android:background="@drawable/bg_resultado_verde"
             android:layout_marginTop="20dp"
             android:padding="20dp"
             android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resultado do Cálculo:"
+                android:textColor="#064E3B"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A7F3D0"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"/>
+
             <TextView
                 android:id="@+id/tvNomeMaterialResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Material: "
-                android:textColor="#1A202C"
+                android:text="Material: Cerâmica"
+                android:textColor="#111827"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="5dp"/>
+
             <TextView
                 android:id="@+id/tvAreaComMargem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0 m²"
-                android:textColor="@color/laranja_principal"
+                android:text="27,50 m² (já c/ 10% de quebra)"
+                android:textColor="#064E3B"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAreaExata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Área total s/ quebra: 25,00 m²"
+                android:textColor="#064E3B"
+                android:textSize="14sp"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A7F3D0"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vincular a uma obra existente:"
+                android:textColor="#064E3B"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <Spinner
+                android:id="@+id/spProjetosVinculo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_spinner_verde"
+                android:layout_marginBottom="15dp" />
+
+            <Button
+                android:id="@+id/btnSalvarMaterial"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Salvar Material na Obra"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="#74B787"
+                app:cornerRadius="8dp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

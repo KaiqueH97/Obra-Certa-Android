@@ -58,6 +58,14 @@ class CalculadoraActivity : AppCompatActivity() {
         val adapterSuperficie = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, listaSuperficies)
         spSuperficie.adapter = adapterSuperficie
 
+        val tvAreaExata = findViewById<TextView>(R.id.tvAreaExata)
+        val spProjetosVinculo = findViewById<Spinner>(R.id.spProjetosVinculo)
+        val btnSalvarMaterial = findViewById<Button>(R.id.btnSalvarMaterial)
+
+        val listaProjetos = listOf("Selecione um projeto...", "Cliente Gabriel", "Cliente Kaique")
+        val adapterProjetos = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, listaProjetos)
+        spProjetosVinculo.adapter = adapterProjetos
+
         spSuperficie.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val superficieSelecionada = listaSuperficies[position]
@@ -113,8 +121,12 @@ class CalculadoraActivity : AppCompatActivity() {
                 }
             }
 
+            val formatAreaFinal = String.format(java.util.Locale("pt", "BR"), "%.2f", areaFinal)
+            val formatAreaExata = String.format(java.util.Locale("pt", "BR"), "%.2f", areaExata)
+
             tvNomeMaterialResult.text = "Material: $materialEscolhido"
-            tvAreaComMargem.text = "${String.format("%.2f", areaFinal)} $unidade"
+            tvAreaComMargem.text = "$formatAreaFinal $unidade"
+            tvAreaExata.text = "Área total s/ quebra: $formatAreaExata m²"
 
             llResultado.visibility = View.VISIBLE
         }
