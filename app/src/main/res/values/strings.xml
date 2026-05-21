@@ -61,6 +61,8 @@
     <string name="titulo_perfil">Meu Perfil</string>
     <string name="label_usuario_conectado">USUÁRIO CONECTADO</string>
     <string name="btn_sair_sistema">Sair do Sistema</string>
+    <string name="editar_nome">Editar Nome</string>
+    <string name="email_exemplo">user@obracerta.com</string>
 
     <!-- Tela de Cadastro -->
     <string name="titulo_cadastro">Criar Conta</string>
