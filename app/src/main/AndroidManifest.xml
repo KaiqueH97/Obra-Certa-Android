@@ -27,9 +27,6 @@
             android:name=".PerfilActivity"
             android:exported="false" />
         <activity
-            android:name=".TarefasActivity"
-            android:exported="false" />
-        <activity
             android:name=".CalculadoraActivity"
             android:exported="false" />
         <activity
