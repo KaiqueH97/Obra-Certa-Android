@@ -5,22 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F9FA"
-    android:padding="25dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="25dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="25dp">
 
         <TextView
-            android:id="@+id/tvTituloProjetos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/titulo_projetos"
+            android:text="Meus Projetos"
             android:textColor="#1A202C"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -29,193 +27,51 @@
             android:id="@+id/tvVoltarProjetos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_voltar"
+            android:layout_gravity="center_vertical"
+            android:text="Voltar"
             android:textColor="@color/laranja_principal"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:baselineAligned="false"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="25dp">
 
         <EditText
             android:id="@+id/etNovoProjeto"
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:hint="@string/dica_novo_projeto"
-            android:inputType="text"
-            android:importantForAutofill="no"
             android:background="@drawable/bg_input_borda"
+            android:hint="Nome do novo cliente..."
             android:padding="15dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp" />
 
         <Button
-            android:id="@+id/btnCriarProjeto"
-            android:layout_width="95dp"
+            android:id="@+id/btnSalvarProjeto"
+            android:layout_width="80dp"
             android:layout_height="55dp"
-            android:text="@string/btn_criar"
+            android:backgroundTint="@color/laranja_principal"
+            android:text="Add"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:backgroundTint="#1A202C"
-            app:cornerRadius="8dp"/>
+            app:cornerRadius="8dp" />
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardProjetoGabriel"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp"
-        app:cardBackgroundColor="@color/white"
-        android:layout_marginBottom="20dp">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
+            android:id="@+id/llListaProjetos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/tvNomeCliente1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/exemplo_cliente_1"
-                    android:textColor="#1A202C"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/abrir_obra"
-                    android:textColor="@color/laranja_principal"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/bg_abrir_obra"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="8dp"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E2E8F0"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/editar"
-                    android:textColor="#3182CE"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="20dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/excluir"
-                    android:textColor="#E53E3E"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardProjetoKaique"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp"
-        app:cardBackgroundColor="@color/white">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/tvNomeCliente2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/exemplo_cliente_2"
-                    android:textColor="#1A202C"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/abrir_obra"
-                    android:textColor="@color/laranja_principal"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/bg_abrir_obra"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="8dp"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E2E8F0"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/editar"
-                    android:textColor="#3182CE"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="20dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/excluir"
-                    android:textColor="#E53E3E"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+            android:orientation="vertical" />
+    </ScrollView>
 
 </LinearLayout>
