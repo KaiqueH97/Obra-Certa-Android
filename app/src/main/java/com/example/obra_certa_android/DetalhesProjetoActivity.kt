@@ -26,6 +26,11 @@ class DetalhesProjetoActivity : AppCompatActivity() {
         val tvVoltar = findViewById<TextView>(R.id.tvVoltarDetalhes)
         tvVoltar.setOnClickListener { finish() }
 
+        val tvNomeProjetoDetalhe = findViewById<TextView>(R.id.tvNomeProjetoDetalhe)
+        val projetoId = intent.getIntExtra("PROJETO_ID", -1)
+        val projetoNome = intent.getStringExtra("PROJETO_NOME") ?: "Projeto Desconhecido"
+        tvNomeProjetoDetalhe.text = projetoNome
+
         val btnAbaOrcamento = findViewById<LinearLayout>(R.id.btnAbaOrcamento)
         val btnAbaTarefas = findViewById<LinearLayout>(R.id.btnAbaTarefas)
         val tvTextoOrcamento = findViewById<TextView>(R.id.tvTextoOrcamento)
