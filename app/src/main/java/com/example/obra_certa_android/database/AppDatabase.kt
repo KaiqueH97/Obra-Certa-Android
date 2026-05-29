@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Projeto::class], version = 1, exportSchema = false)
+@Database(entities = [Projeto::class, Tarefa::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun projetoDao(): ProjetoDao
+    abstract fun tarefaDao(): TarefaDao
 
     companion object {
         @Volatile
@@ -21,7 +22,8 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "obra_certa_database"
                 )
-                    .allowMainThreadQueries() // Adicionamos esta linha mágica!
+                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance
