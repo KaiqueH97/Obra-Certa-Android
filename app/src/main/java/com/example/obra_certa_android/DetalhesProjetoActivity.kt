@@ -1,5 +1,6 @@
 package com.example.obra_certa_android
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +15,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.obra_certa_android.database.AppDatabase
+import com.example.obra_certa_android.database.Material
 import com.example.obra_certa_android.database.Tarefa
+import java.text.NumberFormat
+import java.util.Locale
 
 class DetalhesProjetoActivity : AppCompatActivity() {
 
     private lateinit var db: AppDatabase
     private var projetoId: Int = -1
+
+    // Variáveis Visuais
     private lateinit var llListaTarefas: LinearLayout
+    private lateinit var llListaMateriais: LinearLayout
+    private lateinit var tvCustoTotalProjeto: TextView
+
+    // Formatador para deixar os números com cara de Dinheiro (R$)
+    private val formatadorMoeda = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,24 +44,19 @@ class DetalhesProjetoActivity : AppCompatActivity() {
             insets
         }
 
-        // 1. Iniciar Banco e pegar a ID da Mochila
         db = AppDatabase.getDatabase(this)
         projetoId = intent.getIntExtra("PROJETO_ID", -1)
         val projetoNome = intent.getStringExtra("PROJETO_NOME") ?: "Projeto Desconhecido"
 
-        val tvNomeProjetoDetalhe = findViewById<TextView>(R.id.tvNomeProjetoDetalhe)
-        tvNomeProjetoDetalhe.text = projetoNome
+        findViewById<TextView>(R.id.tvNomeProjetoDetalhe).text = projetoNome
+        findViewById<TextView>(R.id.tvVoltarDetalhes).setOnClickListener { finish() }
 
-        val tvVoltar = findViewById<TextView>(R.id.tvVoltarDetalhes)
-        tvVoltar.setOnClickListener { finish() }
-
-        // 2. Mapeamento da Tela (Abas)
+        // --- LÓGICA DAS ABAS ---
         val btnAbaOrcamento = findViewById<LinearLayout>(R.id.btnAbaOrcamento)
         val btnAbaTarefas = findViewById<LinearLayout>(R.id.btnAbaTarefas)
         val llAbaOrcamento = findViewById<LinearLayout>(R.id.llAbaOrcamento)
         val llAbaTarefas = findViewById<LinearLayout>(R.id.llAbaTarefas)
 
-        // Lógica de clique nas abas
         btnAbaOrcamento.setOnClickListener {
             llAbaOrcamento.visibility = View.VISIBLE
             llAbaTarefas.visibility = View.GONE
@@ -65,60 +71,118 @@ class DetalhesProjetoActivity : AppCompatActivity() {
             btnAbaOrcamento.setBackgroundResource(R.drawable.bg_aba_inativa)
         }
 
-        // 3. Mapeamento das Tarefas
+        // --- MAPEAMENTO TAREFAS ---
         llListaTarefas = findViewById(R.id.llListaTarefas)
         val etNovaTarefa = findViewById<EditText>(R.id.etNovaTarefa)
         val btnAdicionarTarefa = findViewById<Button>(R.id.btnAdicionarTarefa)
 
-        // Carregar as tarefas assim que a tela abre
-        atualizarListaTarefas()
-
-        // 4. Salvar Nova Tarefa
         btnAdicionarTarefa.setOnClickListener {
-            val textoTarefa = etNovaTarefa.text.toString()
-
-            // Verifica se não está vazio e se a obra é válida (ID diferente de -1)
-            if (textoTarefa.isNotBlank() && projetoId != -1) {
-                // Prepara a entidade amarrando ela na ID da obra
-                val novaTarefa = Tarefa(nomeTarefa = textoTarefa, projetoId = projetoId)
-
-                // Salva no banco e atualiza a tela
-                db.tarefaDao().inserirTarefa(novaTarefa)
+            val texto = etNovaTarefa.text.toString()
+            if (texto.isNotBlank() && projetoId != -1) {
+                db.tarefaDao().inserirTarefa(Tarefa(nomeTarefa = texto, projetoId = projetoId))
                 etNovaTarefa.text.clear()
                 atualizarListaTarefas()
-            } else {
-                Toast.makeText(this, "Digite uma tarefa válida.", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // --- MAPEAMENTO MATERIAIS / ORÇAMENTO ---
+        llListaMateriais = findViewById(R.id.llListaMateriais)
+        tvCustoTotalProjeto = findViewById(R.id.tvCustoTotalProjeto)
+        val btnNovoCalculo = findViewById<Button>(R.id.btnNovoCalculo)
+
+        btnNovoCalculo.setOnClickListener {
+            mostrarDialogNovoMaterial()
+        }
+
+        // Carrega as listas assim que abrir a tela
+        atualizarListaTarefas()
+        atualizarListaMateriais()
+    }
+
+    // --- FUNÇÕES DE TAREFA ---
+    private fun atualizarListaTarefas() {
+        llListaTarefas.removeAllViews()
+        if (projetoId == -1) return
+
+        val lista = db.tarefaDao().buscarTarefasPorProjeto(projetoId)
+        for (tarefa in lista) {
+            val view = LayoutInflater.from(this).inflate(R.layout.item_tarefa, llListaTarefas, false)
+
+            view.findViewById<TextView>(R.id.tvNomeTarefaItem).text = tarefa.nomeTarefa
+            val cbTarefa = view.findViewById<CheckBox>(R.id.cbTarefaConcluida)
+            cbTarefa.isChecked = tarefa.isConcluida
+
+            cbTarefa.setOnCheckedChangeListener { _, isChecked ->
+                db.tarefaDao().atualizarTarefa(tarefa.copy(isConcluida = isChecked))
+            }
+            llListaTarefas.addView(view)
         }
     }
 
-    // 5. Função que busca no banco as tarefas exclusivas desta obra
-    private fun atualizarListaTarefas() {
-        llListaTarefas.removeAllViews()
+    // --- FUNÇÕES DE MATERIAL / ORÇAMENTO ---
+    private fun mostrarDialogNovoMaterial() {
+        // Usa o visual que criamos no Passo 1
+        val viewDialog = LayoutInflater.from(this).inflate(R.layout.dialog_novo_material, null)
 
-        // Se por acaso a ID quebrou na passagem, não faz nada
+        val etNome = viewDialog.findViewById<EditText>(R.id.etNomeMaterialDialog)
+        val etQtd = viewDialog.findViewById<EditText>(R.id.etQuantidadeDialog)
+        val etPreco = viewDialog.findViewById<EditText>(R.id.etPrecoDialog)
+
+        AlertDialog.Builder(this)
+            .setView(viewDialog)
+            .setPositiveButton("Salvar") { _, _ ->
+                val nome = etNome.text.toString()
+                val qtd = etQtd.text.toString()
+                val precoString = etPreco.text.toString()
+
+                if (nome.isNotBlank() && precoString.isNotBlank() && projetoId != -1) {
+                    // Tenta converter o texto digitado num número decimal
+                    val precoDecimal = precoString.toDoubleOrNull() ?: 0.0
+
+                    val novoMaterial = Material(
+                        nomeMaterial = nome,
+                        quantidadeInfo = qtd,
+                        precoTotal = precoDecimal,
+                        projetoId = projetoId
+                    )
+
+                    db.materialDao().inserirMaterial(novoMaterial)
+                    atualizarListaMateriais() // Atualiza tudo na tela
+                } else {
+                    Toast.makeText(this, "Preencha o nome e o preço!", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun atualizarListaMateriais() {
+        llListaMateriais.removeAllViews()
         if (projetoId == -1) return
 
-        // Busca filtrada! Só puxa tarefas onde a Chave Estrangeira bate com a ID aberta
-        val listaDoBanco = db.tarefaDao().buscarTarefasPorProjeto(projetoId)
+        // 1. Puxa e desenha os materiais
+        val lista = db.materialDao().buscarMateriaisPorProjeto(projetoId)
+        for (material in lista) {
+            val view = LayoutInflater.from(this).inflate(R.layout.item_material, llListaMateriais, false)
 
-        for (tarefa in listaDoBanco) {
-            val viewDaTarefa = LayoutInflater.from(this).inflate(R.layout.item_tarefa, llListaTarefas, false)
+            view.findViewById<TextView>(R.id.tvNomeMaterialItem).text = material.nomeMaterial
+            view.findViewById<TextView>(R.id.tvQuantidadeMaterialItem).text = material.quantidadeInfo
 
-            val tvNomeTarefa = viewDaTarefa.findViewById<TextView>(R.id.tvNomeTarefaItem)
-            val cbTarefaConcluida = viewDaTarefa.findViewById<CheckBox>(R.id.cbTarefaConcluida)
+            // Coloca o R$ no preço
+            view.findViewById<TextView>(R.id.tvPrecoMaterialItem).text = formatadorMoeda.format(material.precoTotal)
 
-            // Preenche os dados
-            tvNomeTarefa.text = tarefa.nomeTarefa
-            cbTarefaConcluida.isChecked = tarefa.isConcluida
-
-            // Detalhe Profissional: Se o usuário marcar/desmarcar o checkbox, salva a alteração no banco!
-            cbTarefaConcluida.setOnCheckedChangeListener { _, isChecked ->
-                val tarefaAtualizada = tarefa.copy(isConcluida = isChecked)
-                db.tarefaDao().atualizarTarefa(tarefaAtualizada)
+            // Ação de Excluir
+            view.findViewById<TextView>(R.id.btnDeletarMaterial).setOnClickListener {
+                db.materialDao().deletarMaterial(material)
+                atualizarListaMateriais() // Recarrega a tela apagando o item
             }
 
-            llListaTarefas.addView(viewDaTarefa)
+            llListaMateriais.addView(view)
         }
+
+        // 2. Atualiza o Card Verde com o Custo Total
+        // O banco de dados faz a soma automaticamente com a query que criamos
+        val somaTotal = db.materialDao().somarCustoTotalDoProjeto(projetoId) ?: 0.0
+        tvCustoTotalProjeto.text = formatadorMoeda.format(somaTotal)
     }
 }

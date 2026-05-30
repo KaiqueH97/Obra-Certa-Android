@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Projeto::class, Tarefa::class], version = 2, exportSchema = false)
+// ATENÇÃO: Adicionamos o Material::class e subimos a version para 3
+@Database(entities = [Projeto::class, Tarefa::class, Material::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun projetoDao(): ProjetoDao
     abstract fun tarefaDao(): TarefaDao
+    abstract fun materialDao(): MaterialDao // O novo DAO aqui!
 
     companion object {
         @Volatile
@@ -23,7 +25,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "obra_certa_database"
                 )
                     .allowMainThreadQueries()
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration() // Vai apagar o banco v2 e recriar como v3
                     .build()
                 INSTANCE = instance
                 instance
