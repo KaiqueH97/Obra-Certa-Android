@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardTarefaItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="15dp"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/bg_input_borda"
-    android:gravity="center_vertical">
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="1dp">
 
-    <CheckBox
-        android:id="@+id/cbTarefaConcluida"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:buttonTint="@color/laranja_principal"/>
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/tvNomeTarefaItem"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Comprar Cimento"
-        android:textColor="#1A202C"
-        android:textSize="16sp"
-        android:layout_marginStart="10dp"/>
+        <CheckBox
+            android:id="@+id/cbTarefaConcluida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#4ADE80" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvNomeTarefaItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pintar a parede da sala"
+            android:textColor="#1A202C"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

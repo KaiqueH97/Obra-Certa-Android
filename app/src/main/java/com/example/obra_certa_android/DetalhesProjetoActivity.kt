@@ -104,17 +104,57 @@ class DetalhesProjetoActivity : AppCompatActivity() {
         llListaTarefas.removeAllViews()
         if (projetoId == -1) return
 
+        // Aqui garantimos que a lista puxada é de TAREFAS
         val lista = db.tarefaDao().buscarTarefasPorProjeto(projetoId)
+
         for (tarefa in lista) {
             val view = LayoutInflater.from(this).inflate(R.layout.item_tarefa, llListaTarefas, false)
 
-            view.findViewById<TextView>(R.id.tvNomeTarefaItem).text = tarefa.nomeTarefa
+            val tvNomeTarefa = view.findViewById<TextView>(R.id.tvNomeTarefaItem)
             val cbTarefa = view.findViewById<CheckBox>(R.id.cbTarefaConcluida)
+            val cardTarefa = view.findViewById<androidx.cardview.widget.CardView>(R.id.cardTarefaItem)
+
+            tvNomeTarefa.text = tarefa.nomeTarefa
             cbTarefa.isChecked = tarefa.isConcluida
 
+            // Função interna para mudar a cor e riscar o texto
+            fun atualizarVisualTarefa(concluida: Boolean) {
+                if (concluida) {
+                    // Risca o texto, deixa o texto verde escuro e o fundo verde claro
+                    tvNomeTarefa.paintFlags = tvNomeTarefa.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+                    tvNomeTarefa.setTextColor(android.graphics.Color.parseColor("#528B6B"))
+                    cardTarefa.setCardBackgroundColor(android.graphics.Color.parseColor("#F0FDF4"))
+                } else {
+                    // Tira o risco, volta o texto para preto e o fundo para branco
+                    tvNomeTarefa.paintFlags = tvNomeTarefa.paintFlags and android.graphics.Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                    tvNomeTarefa.setTextColor(android.graphics.Color.parseColor("#1A202C"))
+                    cardTarefa.setCardBackgroundColor(android.graphics.Color.WHITE)
+                }
+            }
+
+            // Aplica o visual assim que a tela carrega
+            atualizarVisualTarefa(tarefa.isConcluida)
+
+            // Ação de Marcar/Desmarcar o CheckBox
             cbTarefa.setOnCheckedChangeListener { _, isChecked ->
                 db.tarefaDao().atualizarTarefa(tarefa.copy(isConcluida = isChecked))
+                atualizarVisualTarefa(isChecked) // Atualiza a cor na hora!
             }
+
+            // Ação de Segurar o dedo (Excluir Tarefa)
+            view.setOnLongClickListener {
+                android.app.AlertDialog.Builder(this)
+                    .setTitle("Excluir Tarefa")
+                    .setMessage("Deseja apagar a tarefa '${tarefa.nomeTarefa}'?")
+                    .setPositiveButton("Sim") { _, _ ->
+                        db.tarefaDao().deletarTarefa(tarefa)
+                        atualizarListaTarefas() // Recarrega a lista sem a tarefa
+                    }
+                    .setNegativeButton("Cancelar", null)
+                    .show()
+                true
+            }
+
             llListaTarefas.addView(view)
         }
     }
