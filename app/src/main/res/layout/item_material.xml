@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                     android:id="@+id/tvNomeMaterialItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome do Material"
+                    android:text="Cerâmica"
                     android:textColor="#1A202C"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -44,7 +44,7 @@
                     android:background="#FEF3C7"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="4dp"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="8dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -54,27 +54,35 @@
                 android:gravity="end">
 
                 <TextView
+                    android:id="@+id/btnEditarMaterial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✏️ Editar"
+                    android:textColor="#2563EB"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:padding="4dp"/>
+
+                <TextView
                     android:id="@+id/btnDeletarMaterial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🗑️ Excluir"
                     android:textColor="#DC2626"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:padding="4dp"/>
             </LinearLayout>
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E2E8F0"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#F8F9FA"
+            android:padding="15dp"
+            android:layout_marginTop="15dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -89,7 +97,7 @@
                 android:id="@+id/tvPrecoMaterialItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="R$ 0,00"
+                android:text="0,00"
                 android:textColor="#10B981"
                 android:textSize="18sp"
                 android:textStyle="bold" />

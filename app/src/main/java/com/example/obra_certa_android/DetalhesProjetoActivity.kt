@@ -1,6 +1,6 @@
 package com.example.obra_certa_android
 
-import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,28 +9,25 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.obra_certa_android.database.AppDatabase
-import com.example.obra_certa_android.database.Material
 import com.example.obra_certa_android.database.Tarefa
 import java.text.NumberFormat
 import java.util.Locale
+import com.example.obra_certa_android.database.Material
 
 class DetalhesProjetoActivity : AppCompatActivity() {
 
     private lateinit var db: AppDatabase
     private var projetoId: Int = -1
 
-    // Variáveis Visuais
     private lateinit var llListaTarefas: LinearLayout
     private lateinit var llListaMateriais: LinearLayout
     private lateinit var tvCustoTotalProjeto: TextView
 
-    // Formatador para deixar os números com cara de Dinheiro (R$)
     private val formatadorMoeda = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +48,6 @@ class DetalhesProjetoActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvNomeProjetoDetalhe).text = projetoNome
         findViewById<TextView>(R.id.tvVoltarDetalhes).setOnClickListener { finish() }
 
-        // --- LÓGICA DAS ABAS ---
         val btnAbaOrcamento = findViewById<LinearLayout>(R.id.btnAbaOrcamento)
         val btnAbaTarefas = findViewById<LinearLayout>(R.id.btnAbaTarefas)
         val llAbaOrcamento = findViewById<LinearLayout>(R.id.llAbaOrcamento)
@@ -71,7 +67,6 @@ class DetalhesProjetoActivity : AppCompatActivity() {
             btnAbaOrcamento.setBackgroundResource(R.drawable.bg_aba_inativa)
         }
 
-        // --- MAPEAMENTO TAREFAS ---
         llListaTarefas = findViewById(R.id.llListaTarefas)
         val etNovaTarefa = findViewById<EditText>(R.id.etNovaTarefa)
         val btnAdicionarTarefa = findViewById<Button>(R.id.btnAdicionarTarefa)
@@ -85,26 +80,27 @@ class DetalhesProjetoActivity : AppCompatActivity() {
             }
         }
 
-        // --- MAPEAMENTO MATERIAIS / ORÇAMENTO ---
         llListaMateriais = findViewById(R.id.llListaMateriais)
         tvCustoTotalProjeto = findViewById(R.id.tvCustoTotalProjeto)
+
         val btnNovoCalculo = findViewById<Button>(R.id.btnNovoCalculo)
-
         btnNovoCalculo.setOnClickListener {
-            mostrarDialogNovoMaterial()
+            val intent = Intent(this, CalculadoraActivity::class.java)
+            intent.putExtra("PROJETO_ID", projetoId)
+            startActivity(intent)
         }
+    }
 
-        // Carrega as listas assim que abrir a tela
+    override fun onResume() {
+        super.onResume()
+        // Atualiza as listas automaticamente ao retornar da Calculadora
         atualizarListaTarefas()
         atualizarListaMateriais()
     }
-
-    // --- FUNÇÕES DE TAREFA ---
     private fun atualizarListaTarefas() {
         llListaTarefas.removeAllViews()
         if (projetoId == -1) return
 
-        // Aqui garantimos que a lista puxada é de TAREFAS
         val lista = db.tarefaDao().buscarTarefasPorProjeto(projetoId)
 
         for (tarefa in lista) {
@@ -117,7 +113,6 @@ class DetalhesProjetoActivity : AppCompatActivity() {
             tvNomeTarefa.text = tarefa.nomeTarefa
             cbTarefa.isChecked = tarefa.isConcluida
 
-            // Função interna para mudar a cor e riscar o texto
             fun atualizarVisualTarefa(concluida: Boolean) {
                 if (concluida) {
                     // Risca o texto, deixa o texto verde escuro e o fundo verde claro
@@ -132,16 +127,13 @@ class DetalhesProjetoActivity : AppCompatActivity() {
                 }
             }
 
-            // Aplica o visual assim que a tela carrega
             atualizarVisualTarefa(tarefa.isConcluida)
 
-            // Ação de Marcar/Desmarcar o CheckBox
             cbTarefa.setOnCheckedChangeListener { _, isChecked ->
                 db.tarefaDao().atualizarTarefa(tarefa.copy(isConcluida = isChecked))
                 atualizarVisualTarefa(isChecked) // Atualiza a cor na hora!
             }
 
-            // Ação de Segurar o dedo (Excluir Tarefa)
             view.setOnLongClickListener {
                 android.app.AlertDialog.Builder(this)
                     .setTitle("Excluir Tarefa")
@@ -159,69 +151,53 @@ class DetalhesProjetoActivity : AppCompatActivity() {
         }
     }
 
-    // --- FUNÇÕES DE MATERIAL / ORÇAMENTO ---
-    private fun mostrarDialogNovoMaterial() {
-        // Usa o visual que criamos no Passo 1
-        val viewDialog = LayoutInflater.from(this).inflate(R.layout.dialog_novo_material, null)
-
-        val etNome = viewDialog.findViewById<EditText>(R.id.etNomeMaterialDialog)
-        val etQtd = viewDialog.findViewById<EditText>(R.id.etQuantidadeDialog)
-        val etPreco = viewDialog.findViewById<EditText>(R.id.etPrecoDialog)
-
-        AlertDialog.Builder(this)
-            .setView(viewDialog)
-            .setPositiveButton("Salvar") { _, _ ->
-                val nome = etNome.text.toString()
-                val qtd = etQtd.text.toString()
-                val precoString = etPreco.text.toString()
-
-                if (nome.isNotBlank() && precoString.isNotBlank() && projetoId != -1) {
-                    // Tenta converter o texto digitado num número decimal
-                    val precoDecimal = precoString.toDoubleOrNull() ?: 0.0
-
-                    val novoMaterial = Material(
-                        nomeMaterial = nome,
-                        quantidadeInfo = qtd,
-                        precoTotal = precoDecimal,
-                        projetoId = projetoId
-                    )
-
-                    db.materialDao().inserirMaterial(novoMaterial)
-                    atualizarListaMateriais() // Atualiza tudo na tela
-                } else {
-                    Toast.makeText(this, "Preencha o nome e o preço!", Toast.LENGTH_SHORT).show()
-                }
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
-    }
 
     private fun atualizarListaMateriais() {
         llListaMateriais.removeAllViews()
         if (projetoId == -1) return
 
-        // 1. Puxa e desenha os materiais
         val lista = db.materialDao().buscarMateriaisPorProjeto(projetoId)
         for (material in lista) {
             val view = LayoutInflater.from(this).inflate(R.layout.item_material, llListaMateriais, false)
 
             view.findViewById<TextView>(R.id.tvNomeMaterialItem).text = material.nomeMaterial
             view.findViewById<TextView>(R.id.tvQuantidadeMaterialItem).text = material.quantidadeInfo
-
-            // Coloca o R$ no preço
             view.findViewById<TextView>(R.id.tvPrecoMaterialItem).text = formatadorMoeda.format(material.precoTotal)
 
-            // Ação de Excluir
-            view.findViewById<TextView>(R.id.btnDeletarMaterial).setOnClickListener {
-                db.materialDao().deletarMaterial(material)
-                atualizarListaMateriais() // Recarrega a tela apagando o item
-            }
+            val btnEditar = view.findViewById<TextView>(R.id.btnEditarMaterial)
+            val btnExcluir = view.findViewById<TextView>(R.id.btnDeletarMaterial)
 
+            btnExcluir.setOnClickListener {
+                android.app.AlertDialog.Builder(this)
+                    .setTitle("Excluir Material")
+                    .setMessage("Deseja remover '${material.nomeMaterial}' do orçamento?")
+                    .setPositiveButton("Sim") { _, _ ->
+                        db.materialDao().deletarMaterial(material)
+                        atualizarListaMateriais()
+                    }
+                    .setNegativeButton("Cancelar", null)
+                    .show()
+            }
+            btnEditar.setOnClickListener {
+                val inputPreco = EditText(this)
+                inputPreco.setText(material.precoTotal.toString())
+                inputPreco.inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL
+                inputPreco.setPadding(50, 50, 50, 50)
+
+                android.app.AlertDialog.Builder(this)
+                    .setTitle("Editar Preço Total")
+                    .setView(inputPreco)
+                    .setPositiveButton("Salvar") { _, _ ->
+                        val novoPreco = inputPreco.text.toString().toDoubleOrNull() ?: material.precoTotal
+                        val materialAtualizado = material.copy(precoTotal = novoPreco)
+                        db.materialDao().atualizarMaterial(materialAtualizado)
+                        atualizarListaMateriais()
+                    }
+                    .setNegativeButton("Cancelar", null)
+                    .show()
+            }
             llListaMateriais.addView(view)
         }
-
-        // 2. Atualiza o Card Verde com o Custo Total
-        // O banco de dados faz a soma automaticamente com a query que criamos
         val somaTotal = db.materialDao().somarCustoTotalDoProjeto(projetoId) ?: 0.0
         tvCustoTotalProjeto.text = formatadorMoeda.format(somaTotal)
     }
