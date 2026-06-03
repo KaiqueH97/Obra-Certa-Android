@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -88,6 +89,45 @@ class DetalhesProjetoActivity : AppCompatActivity() {
             val intent = Intent(this, CalculadoraActivity::class.java)
             intent.putExtra("PROJETO_ID", projetoId)
             startActivity(intent)
+        }
+        // --- AÇÃO DE PEDIR COTAÇÃO NO WHATSAPP ---
+        val btnPedirCotacao = findViewById<Button>(R.id.btnPedirCotacao)
+
+        btnPedirCotacao.setOnClickListener {
+            // 1. Puxa a lista de materiais atualizada da obra
+            val lista = db.materialDao().buscarMateriaisPorProjeto(projetoId)
+
+            // 2. Se não tiver material, avisa o usuário e cancela a ação
+            if (lista.isEmpty()) {
+                Toast.makeText(this, "Adicione materiais ao orçamento primeiro!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // 3. Monta o texto do orçamento de forma profissional
+            val mensagem = java.lang.StringBuilder()
+            mensagem.append("Olá! Gostaria de solicitar uma cotação para os seguintes materiais:\n\n")
+
+            for (material in lista) {
+                mensagem.append("▪️ ${material.nomeMaterial} (${material.quantidadeInfo})\n")
+            }
+
+            mensagem.append("\nFico no aguardo dos valores. Obrigado!")
+
+            // 4. Cria o link e abre o WhatsApp
+            try {
+                // URLEncoder transforma espaços e quebras de linha em um formato que a internet entende
+                val textoCodificado = java.net.URLEncoder.encode(mensagem.toString(), "UTF-8")
+                val url = "https://wa.me/?text=$textoCodificado"
+
+                val intentWhatsapp = Intent(Intent.ACTION_VIEW)
+                intentWhatsapp.data = android.net.Uri.parse(url)
+
+                startActivity(intentWhatsapp)
+
+            } catch (e: Exception) {
+                // Se o celular der erro (ex: não ter navegador ou WhatsApp), ele avisa em vez de "crashar" o app
+                Toast.makeText(this, "Erro ao tentar abrir o WhatsApp.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
