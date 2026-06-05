@@ -1,59 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
+    android:background="#EA580C"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTituloResumo"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/titulo_resumo"
-        android:textColor="@color/azul_marinho_texto"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:background="#F8F9FA"
+        android:orientation="vertical"
+        android:padding="30dp">
 
-    <TextView
-        android:id="@+id/tvSubtituloResumo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/subtitulo_resumo"
-        android:textColor="@color/cinza_subtitulo"
-        android:textSize="18sp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="40dp" />
+        <TextView
+            android:id="@+id/tvTituloResumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_resumo"
+            android:textColor="#111827"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnIrMeusProjetos"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="@string/btn_meus_projetos"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:backgroundTint="@color/laranja_principal"
-        android:layout_marginBottom="20dp" />
+        <TextView
+            android:id="@+id/tvSubtituloResumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/subtitulo_resumo"
+            android:textColor="#64748B"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="40dp" />
 
-    <Button
-        android:id="@+id/btnIrCalculadora"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="@string/btn_calculadora"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:backgroundTint="@color/azul_botoes"
-        android:layout_marginBottom="20dp" />
+        <Button
+            android:id="@+id/btnIrMeusProjetos"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="@string/btn_meus_projetos"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:backgroundTint="#EA580C"
+            app:cornerRadius="12dp"
+            android:layout_marginBottom="20dp" />
 
-    <Button
-        android:id="@+id/btnIrMeuPerfil"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="@string/btn_meu_perfil"
-        android:textColor="@color/azul_marinho_texto"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:backgroundTint="@color/cinza_claro_botoes" />
+        <Button
+            android:id="@+id/btnIrCalculadora"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="@string/btn_calculadora"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:backgroundTint="#1E293B"
+            app:cornerRadius="12dp"
+            android:layout_marginBottom="20dp" />
 
+        <Button
+            android:id="@+id/btnIrMeuPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="@string/btn_meu_perfil"
+            android:textColor="#111827"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:backgroundTint="#E2E8F0"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
 </LinearLayout>

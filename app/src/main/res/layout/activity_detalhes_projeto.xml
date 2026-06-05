@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA"
-    android:fillViewport="true">
+    android:background="#EA580C"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#F8F9FA"
         android:orientation="vertical"
-        android:padding="25dp">
+        android:padding="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="25dp">
+            android:gravity="center_vertical"
+            android:layout_marginBottom="30dp">
 
             <TextView
                 android:id="@+id/tvNomeProjetoDetalhe"
@@ -25,8 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cliente Kaique"
-                android:textColor="#1A202C"
-                android:textSize="24sp"
+                android:textColor="#111827"
+                android:textSize="36sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -34,10 +36,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Voltar"
-                android:textColor="@color/laranja_principal"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical" />
+                android:textColor="#EA580C"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,121 +80,136 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="📋 Tarefas"
-                    android:textColor="@color/laranja_principal"
+                    android:textColor="#EA580C"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/llAbaTarefas"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/etNovaTarefa"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_weight="1"
-                    android:hint="O que precisa ser feito?"
-                    android:background="@drawable/bg_input_borda"
-                    android:padding="15dp"
-                    android:layout_marginEnd="10dp"/>
-
-                <Button
-                    android:id="@+id/btnAdicionarTarefa"
-                    android:layout_width="100dp"
-                    android:layout_height="55dp"
-                    android:backgroundTint="#1A202C"
-                    android:text="Criar"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="8dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llListaTarefas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llAbaOrcamento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_card_verde_escuro"
-                android:padding="20dp"
-                android:gravity="center"
-                android:layout_marginBottom="25dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/llAbaTarefas"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CUSTO TOTAL ACUMULADO"
-                    android:textColor="#A7F3D0"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="5dp"/>
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvCustoTotalProjeto"
-                    android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="20dp">
+
+                        <EditText
+                            android:id="@+id/etNovaTarefa"
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_weight="1"
+                            android:hint="O que precisa ser feito?"
+                            android:textColorHint="#9CA3AF"
+                            android:textSize="18sp"
+                            android:background="@drawable/bg_input_borda"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:layout_marginEnd="15dp"/>
+
+                        <Button
+                            android:id="@+id/btnAdicionarTarefa"
+                            android:layout_width="100dp"
+                            android:layout_height="60dp"
+                            android:backgroundTint="#1E293B"
+                            android:text="Criar"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llListaTarefas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAbaOrcamento"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="R$ 0,00"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_verde_escuro"
+                        android:padding="20dp"
+                        android:gravity="center"
+                        android:layout_marginBottom="25dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CUSTO TOTAL ACUMULADO"
+                            android:textColor="#A7F3D0"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="5dp"/>
+
+                        <TextView
+                            android:id="@+id/tvCustoTotalProjeto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R$ 0,00"
+                            android:textColor="@color/white"
+                            android:textSize="40sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llListaMateriais"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                    <Button
+                        android:id="@+id/btnNovoCalculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:text="+ Novo Cálculo de Material"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#D97706"
+                        app:cornerRadius="8dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="5dp"/>
+
+                    <Button
+                        android:id="@+id/btnPedirCotacao"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:text="Pedir Cotação no WhatsApp"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#22C55E"
+                        app:cornerRadius="8dp" />
+
+                </LinearLayout>
+
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llListaMateriais"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-
-            <Button
-                android:id="@+id/btnNovoCalculo"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:text="+ Novo Cálculo de Material"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:backgroundTint="#D97706"
-                app:cornerRadius="8dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="5dp"/>
-
-            <Button
-                android:id="@+id/btnPedirCotacao"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:text="Pedir Cotação no WhatsApp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:backgroundTint="#22C55E"
-                app:cornerRadius="8dp" />
-
-        </LinearLayout>
-
+        </ScrollView>
 
     </LinearLayout>
-</ScrollView>
+</LinearLayout>
