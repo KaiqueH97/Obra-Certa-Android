@@ -6,12 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 // ATENÇÃO: Adicionamos o Material::class e subimos a version para 3
-@Database(entities = [Projeto::class, Tarefa::class, Material::class], version = 3, exportSchema = false)
+@Database(entities = [Projeto::class, Tarefa::class, Material::class, Usuario::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun projetoDao(): ProjetoDao
     abstract fun tarefaDao(): TarefaDao
-    abstract fun materialDao(): MaterialDao // O novo DAO aqui!
+    abstract fun materialDao(): MaterialDao
+    abstract fun usuarioDao(): UsuarioDao
 
     companion object {
         @Volatile
