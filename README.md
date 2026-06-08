@@ -4,6 +4,14 @@ O **Obra Certa** é um aplicativo Android desenvolvido para auxiliar profissiona
 
 Este repositório contém o código-fonte do aplicativo mobile (Frontend), construído de forma nativa utilizando a linguagem recomendada pelo Google para o ecossistema mobile.
 
+## 📱 Telas do Sistema
+
+<p align="center">
+  <img src="imagens/home.png" width="250" />
+  <img src="imagens/calc.png" width="250" />
+  <img src="imagens/orc.png" width="250" />
+</p>
+
 ## 🚀 Funcionalidades Atuais
 
 * **Sistema de Navegação:** Fluxo completo de telas (Activities) utilizando `Intents` nativos do Android.
