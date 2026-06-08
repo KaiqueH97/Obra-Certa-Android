@@ -15,6 +15,7 @@ Este repositório contém o código-fonte do aplicativo mobile (Frontend e Backe
 ## 🚀 Funcionalidades
 
 * **Autenticação Local:** Sistema de Login e Cadastro de usuários totalmente funcional com validação de credenciais e prevenção de e-mails duplicados.
+  
 * **Persistência de Dados (SQLite):** Implementação de banco de dados local através da biblioteca **Room**. O sistema possui o **CRUD completo** (Create, Read, Update, Delete) para as entidades:
   * Obras/Projetos
   * Tarefas
